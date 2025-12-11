@@ -3,275 +3,818 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>“5分レビュー法”は本当に成績を伸ばすのか？ 最新調査で見えた新しい学び方 | EduFront News</title>
+    <title>【独自取材】睡眠学習は本当に効果があるのか？脳科学者と現役高校生に聞いた | 学びの未来ラボ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        /* 現代的なニュースメディア風デザイン（クリーン、信頼感演出） */
-        body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            background-color: #f4f4f4;
-            color: #111;
+        * {
             margin: 0;
             padding: 0;
-            line-height: 1.8;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+            background-color: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.9;
+            font-size: 16px;
         }
 
-        /* ナビゲーション */
-        nav {
+        /* ヘッダー - 信頼感のあるメディア風 */
+        header {
             background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            padding: 0 20px;
-            height: 60px;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #00a88f;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .logo-text {
+            font-family: "Noto Serif JP", serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
             letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 24px;
         }
         .nav-links a {
             color: #555;
             text-decoration: none;
-            margin-left: 20px;
             font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #0066cc;
         }
 
-        /* レイアウト */
+        /* メインレイアウト */
         .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            display: flex;
-            gap: 40px;
-            padding: 0 20px;
-        }
-        .main-column {
-            flex: 2;
-            background: white;
-            padding: 40px;
-            border-radius: 4px;
-        }
-        .side-column {
-            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 48px;
         }
 
-        /* 記事スタイル */
-        .category-tag {
-            background: #00a88f;
-            color: white;
-            padding: 4px 8px;
-            font-size: 12px;
-            font-weight: bold;
-            border-radius: 2px;
-        }
-        .post-meta {
-            color: #888;
-            font-size: 14px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 32px;
-            line-height: 1.3;
-            margin-bottom: 20px;
-            margin-top: 10px;
-        }
-        .lead {
-            font-weight: bold;
-            color: #444;
-            margin-bottom: 30px;
+        /* 記事本文 */
+        article {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
         
-        /* グラフ風プレースホルダー */
-        .chart-placeholder {
+        .article-header {
+            padding: 32px 40px 24px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .category-badge {
+            display: inline-block;
+            background: #e8f4fc;
+            color: #0066cc;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+        .article-title {
+            font-family: "Noto Serif JP", serif;
+            font-size: 28px;
+            line-height: 1.4;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 13px;
+            color: #888;
+        }
+        .article-meta time {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .hero-image {
             width: 100%;
-            height: 250px;
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
-            margin: 30px 0;
+            height: 400px;
+            background: linear-gradient(180deg, #1a237e 0%, #303f9f 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            color: #aaa;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-image::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="30" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="60" r="3" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.12)"/><circle cx="85" cy="20" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.5;
+        }
+        .hero-placeholder {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            text-align: center;
+            z-index: 1;
+        }
+        .hero-placeholder span {
+            display: block;
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        .article-body {
+            padding: 40px;
+        }
+        .article-body p {
+            margin-bottom: 24px;
+        }
+        .article-body h2 {
+            font-family: "Noto Serif JP", serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 48px 0 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #0066cc;
+            color: #1a1a1a;
+        }
+        .article-body h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 32px 0 16px;
+            color: #333;
+        }
+
+        .lead-text {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            line-height: 2;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+        }
+
+        /* 引用・専門家コメント */
+        .expert-quote {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 28px;
+            margin: 32px 0;
+            position: relative;
+        }
+        .expert-quote::before {
+            content: """;
+            position: absolute;
+            top: 16px;
+            left: 20px;
+            font-size: 48px;
+            color: #ddd;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        .quote-text {
+            padding-left: 32px;
+            font-style: italic;
+            color: #444;
+            margin-bottom: 16px;
+        }
+        .expert-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-left: 32px;
+        }
+        .expert-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .expert-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: #333;
+        }
+        .expert-title {
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* データ・グラフ */
+        .data-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+        .data-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
         }
         .bar-chart {
             display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 16px;
+        }
+        .bar-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .bar-wrapper {
+            height: 180px;
+            display: flex;
             align-items: flex-end;
-            gap: 20px;
-            height: 150px;
+            justify-content: center;
+            width: 80px;
         }
         .bar {
-            width: 40px;
-            background: #00a88f;
+            width: 64px;
+            background: linear-gradient(180deg, #0066cc 0%, #0099ff 100%);
+            border-radius: 4px 4px 0 0;
+            position: relative;
         }
-        
-        /* 引用風デザイン */
-        blockquote {
-            border-left: 4px solid #00a88f;
-            margin: 30px 0;
-            padding-left: 20px;
-            font-style: italic;
-            color: #555;
-            background: #fcfcfc;
-            padding: 20px;
+        .bar-value {
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            font-weight: 700;
+            color: #0066cc;
         }
-
-        /* 誘導バナー */
-        .cta-box {
-            border: 2px solid #00a88f;
-            padding: 30px;
-            margin-top: 50px;
+        .bar-label {
+            font-size: 12px;
+            color: #666;
             text-align: center;
-            background: #f0fffd;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            width: 100%;
+            line-height: 1.4;
+            height: 40px;
         }
-        .btn-primary {
-            display: inline-block;
-            background: #00a88f;
-            color: white;
-            padding: 15px 40px;
+        .data-source {
+            font-size: 11px;
+            color: #999;
+            text-align: right;
+            margin-top: 16px;
+        }
+        .data-source a {
+            color: #0066cc;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 30px;
-            margin-top: 15px;
-            transition: background 0.3s;
-        }
-        .btn-primary:hover {
-            background: #008f7a;
         }
 
-        /* サイドバー要素 */
-        .side-widget {
+        /* 体験談 */
+        .testimonial {
             background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 4px;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 28px;
+            margin: 24px 0;
         }
-        .widget-title {
-            font-size: 16px;
-            font-weight: bold;
-            border-bottom: 2px solid #00a88f;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
         }
-        .ad-banner {
-            background: #333;
-            color: white;
-            height: 250px;
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .testimonial-name {
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .testimonial-attr {
+            font-size: 12px;
+            color: #888;
+        }
+        .testimonial-text {
+            color: #444;
+            font-size: 15px;
+        }
+
+        /* 注目ボックス */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 32px 0;
+            border: 1px solid #f0e6cc;
+        }
+        .highlight-box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #996600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .highlight-box p {
+            margin-bottom: 0;
+            color: #664400;
+        }
+
+        /* 記事内CTA - 自然に溶け込む */
+        .inline-feature {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 32px;
+            margin: 40px 0;
+        }
+        .inline-feature-label {
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+        .inline-feature h3 {
+            font-family: "Noto Serif JP", serif;
             font-size: 20px;
-            cursor: pointer;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1a1a1a;
         }
-
-        /* リンク切れ演出 */
-        .broken-link {
-            color: #00a88f;
+        .inline-feature p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .feature-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .feature-link:hover {
             text-decoration: underline;
-            cursor: pointer;
         }
 
+        /* 記事下部 */
+        .article-footer {
+            padding: 32px 40px;
+            border-top: 1px solid #f0f0f0;
+            background: #fafafa;
+        }
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .tag {
+            background: #e8e8e8;
+            color: #666;
+            padding: 4px 12px;
+            font-size: 12px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .article-credit {
+            font-size: 12px;
+            color: #999;
+            line-height: 1.8;
+        }
+
+        /* サイドバー */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .widget {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .widget-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #1a1a1a;
+        }
+        .ranking-list {
+            list-style: none;
+        }
+        .ranking-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            gap: 12px;
+        }
+        .ranking-list li:last-child {
+            border-bottom: none;
+        }
+        .ranking-num {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ddd;
+            width: 24px;
+        }
+        .ranking-list li:nth-child(1) .ranking-num { color: #ffd700; }
+        .ranking-list li:nth-child(2) .ranking-num { color: #c0c0c0; }
+        .ranking-list li:nth-child(3) .ranking-num { color: #cd7f32; }
+        .ranking-list a {
+            color: #333;
+            text-decoration: none;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .ranking-list a:hover {
+            color: #0066cc;
+        }
+
+        /* 関連記事 */
+        .related-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .related-item:last-child {
+            border-bottom: none;
+        }
+        .related-thumb {
+            width: 80px;
+            height: 56px;
+            background: #eee;
+            border-radius: 4px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .related-info a {
+            color: #333;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.4;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .related-info a:hover {
+            color: #0066cc;
+        }
+        .related-date {
+            font-size: 11px;
+            color: #999;
+        }
+
+        /* フッター */
+        footer {
+            background: #1a1a1a;
+            color: #999;
+            padding: 48px 24px;
+            margin-top: 64px;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .footer-logo .logo-icon {
+            background: #333;
+        }
+        .footer-logo .logo-text {
+            color: white;
+        }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+        .copyright {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .article-title {
+                font-size: 22px;
+            }
+            .article-body {
+                padding: 24px;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="logo">EduFront News</div>
-    <div class="nav-links">
-        <a href="#">ニュース</a>
-        <a href="#">教育テック</a>
-        <a href="#">受験</a>
-        <a href="#">インタビュー</a>
+<header>
+    <div class="header-inner">
+        <a href="#" class="logo">
+            <div class="logo-icon">学</div>
+            <span class="logo-text">学びの未来ラボ</span>
+        </a>
+        <nav class="nav-links">
+            <a href="#">教育・学習</a>
+            <a href="#">受験</a>
+            <a href="#">脳科学</a>
+            <a href="#">EdTech</a>
+            <a href="#">インタビュー</a>
+        </nav>
     </div>
-</nav>
+</header>
 
-<div class="container">
-    <div class="main-column">
-        <span class="category-tag">脳科学・学習</span>
-        <h1>“寝ている間に覚えられる”は本当か？ 最新の「睡眠学習」調査で見えた可能性</h1>
-        <div class="post-meta">
-            2025年9月12日 14:00 | 執筆：EduFront編集部
-        </div>
-
-        <div style="width:100%; height:300px; background:#ddd; margin-bottom:30px; display:flex; align-items:center; justify-content:center; color:#555; font-size:14px;">
-            [Image: 枕元にスマートフォンを置いて眠る高校生（イメージ）]
-        </div>
-
-        <p class="lead">テスト前になると、「寝る時間も惜しい」と焦る高校生は多い。そんな中、睡眠時間を学習時間に変える “スリープ・ラーニング（睡眠学習）” が再び注目を集めている。</p>
-
-        <p>〇〇大学の脳科学研究グループは、「レム睡眠中に特定の周波数の音声を流すことで、記憶の定着率が変化する可能性がある」と報告している。果たして実用レベルにあるのか。EduFront編集部で高校生を対象に小規模調査を行った。</p>
-
-        <h2>高校生9名による実証実験</h2>
-        <p>対象は高校1〜3年生の計9名。それぞれ2週間、就寝中に「専用の暗記音声」を流し続けてもらった。</p>
-        
-        <div class="chart-placeholder">
-            <div class="bar-chart">
-                <div class="bar" style="height: 60px;"></div>
-                <div class="bar" style="height: 90px;"></div>
-                <div class="bar" style="height: 120px;"></div>
+<main class="container">
+    <article>
+        <div class="article-header">
+            <span class="category-badge">脳科学・学習法</span>
+            <h1 class="article-title">【独自取材】睡眠学習は本当に効果があるのか？ 脳科学者と実践者に聞いた最新メソッドの実態</h1>
+            <div class="article-meta">
+                <time>2025年11月28日</time>
+                <span>取材・文：編集部 山田</span>
             </div>
-            <p style="margin-top:10px; font-size:12px;">図1：起床時の記憶テスト結果のイメージ（作成：編集部）</p>
         </div>
 
-        <p>分析結果の概要としては、以下の傾向が見られた。</p>
-        <ul>
-            <li>翌朝の英単語テストで、前日より正答数が増えた生徒がいた</li>
-            <li>専用アプリを使った生徒の一部は「夢の中で勉強した気がする」と回答</li>
-        </ul>
-        <p>詳細データは、編集部と提携する脳科学コンサル企業のレポートで確認できる。<br>
-        （参考リンク：<span class="broken-link" onclick="alert('404 Not Found\n\nお探しのページは見つかりませんでした。')">2025年夏季 睡眠学習調査レポート</span>）</p>
+        <div class="article-body">
+            <div class="lead-text">
+                「寝ている間に勉強できたら」——受験生なら誰もが一度は考えたことがあるだろう。かつては疑似科学とも言われた「睡眠学習」だが、近年の脳科学研究により、その可能性が見直されつつある。本誌では、最新研究の動向と、実際に効果を実感している高校生たちを取材した。
+            </div>
 
-        <h2>効果の背景に“シータ波誘導”？</h2>
-        <p>実験に参加した生徒は、就寝時に特殊な“バイノーラル音声”を聴いていた。<br>
-        この音声は、同企業が開発したもので、公式サイトでは<strong>「大学研究室と共同開発した脳波同調アルゴリズム」</strong>と紹介されている。</p>
-        <p>ただし、大学名や研究データの詳細は特許申請中につき非公開で、公式ページの論文リンクは現在アクセスできない状態だ。</p>
+            <h2>睡眠中の記憶定着メカニズムが解明されつつある</h2>
+            
+            <p>脳科学の分野では、睡眠が記憶の定着に重要な役割を果たすことは広く知られている。特に注目されているのが、睡眠中に起こる「記憶の再活性化」と呼ばれる現象だ。</p>
+            
+            <p>海外の研究機関の発表によると、ノンレム睡眠時に特定の聴覚刺激を与えることで、日中に学習した内容の定着率が向上する可能性があるという。この研究は、海外の学術誌でも引用されており、新しいアプローチとして期待されている。</p>
 
-        <h2>専門家によるコメント</h2>
-        <blockquote>
-            「睡眠中の聴覚刺激が記憶に干渉することは知られていますが、学習効果として確立するには、まだ多くの検証が必要と言えるでしょう」<br>
-            <small>（Y准教授 / 認知心理学）</small>
-        </blockquote>
+            <div class="expert-quote">
+                <p class="quote-text">「従来の睡眠学習は、ただ音声を流すだけでした。しかし現在は、脳波のタイミングに合わせて刺激を与える技術が発展しています。まだ研究段階ですが、特定の条件下では効果が見られるケースも報告されています」</p>
+                <div class="expert-info">
+                    <div class="expert-avatar">👨‍🔬</div>
+                    <div>
+                        <div class="expert-title">海外研究機関 主任研究員</div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="cta-box">
-            <h3>本格的に取り組みたい人へ</h3>
-            <p>EduFront編集部では、この睡眠学習メソッドを体系化した「スリープ・マスター・プログラム」を提供する学習塾 <strong>RiseEdge（ライズエッジ）</strong> を特集した。</p>
-            <p>専用の骨伝導ピローと学習アプリを組み合わせ、寝ている間に偏差値アップを目指す。</p>
-            <a href="#" class="btn-primary" onclick="alert('【RiseEdge公式サイトへ移動します】\n\nスリープ学習コース：298,000円\nいまなら専用ピロープレゼント中！')">RiseEdge 特設ページを見る</a>
-            <p style="font-size:12px; color:#888; margin-top:10px;">[PR] 提供：RiseEdgeアカデミー</p>
+            <h2>実証調査：高校生12名の2週間プログラム</h2>
+
+            <p>今回、本誌が取材したのは、この睡眠学習メソッドをプログラム化している学習塾「RiseEdge（ライズエッジ）アカデミー」だ。同社は、脳波同調技術を応用した独自の学習システムを2023年から提供している。</p>
+
+            <p>同社が昨年実施した調査では、高校1〜3年生32名を対象に、2週間の睡眠学習プログラムを実施。参加者には、就寝時に専用アプリから再生される音声コンテンツ（英単語・歴史年号など）を聴取してもらった。</p>
+
+            <div class="data-section">
+                <div class="data-title">プログラム参加者の英単語テスト正答率変化</div>
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <div class="bar-wrapper">
+                            <div class="bar" style="height: 90px;">
+                                <span class="bar-value">58%</span>
+                            </div>
+                        </div>
+                        <div class="bar-label">実施前<br>平均</div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-wrapper">
+                            <div class="bar" style="height: 130px;">
+                                <span class="bar-value">74%</span>
+                            </div>
+                        </div>
+                        <div class="bar-label">1週間後</div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-wrapper">
+                            <div class="bar" style="height: 160px;">
+                                <span class="bar-value">83%</span>
+                            </div>
+                        </div>
+                        <div class="bar-label">2週間後</div>
+                    </div>
+                </div>
+                <div class="data-source">出典：RiseEdgeアカデミー 2024年度調査 (<a href="#" onclick="alert('ページが見つかりません。\n\nこのレポートは会員限定コンテンツです。'); return false;">詳細レポート</a>)</div>
+            </div>
+
+            <p>調査結果によると、参加者の平均正答率は開始前の58%から、2週間後には83%まで向上したという。特に、毎日継続して使用した生徒の伸び率が高い傾向にあった。</p>
+
+            <div class="highlight-box">
+                <h4>📊 調査の概要</h4>
+                <p>対象：高校1〜3年生 12名<br>
+                期間：2024年8月1日〜14日<br>
+                方法：専用アプリによる睡眠時音声学習＋朝のテスト<br>
+                </p>
+            </div>
+
+            <h2>体験者の声「起きたら覚えていた」</h2>
+
+            <p>実際にプログラムを体験した高校生にも話を聞いた。</p>
+
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">K</div>
+                    <div>
+                        <div class="testimonial-name">K.Sさん</div>
+                        <div class="testimonial-attr">高校3年生・私立文系志望</div>
+                    </div>
+                </div>
+                <p class="testimonial-text">「正直、最初は半信半疑でした。でも1週間くらい続けたら、朝起きた時に『あ、なんかこれ知ってる』みたいな感覚があって。英単語帳を開いても、前より頭に入ってくる感じがします。睡眠時間は変えていないので、純粋に勉強時間が増えた感覚です」</p>
+            </div>
+
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">M</div>
+                    <div>
+                        <div class="testimonial-name">M.Tさん</div>
+                        <div class="testimonial-attr">高校2年生・国公立理系志望</div>
+                    </div>
+                </div>
+                <p class="testimonial-text">「部活が忙しくて勉強時間が取れないのが悩みでした。これなら寝てる間だから、他の時間を削らなくていい。模試の偏差値も、2ヶ月で5くらい上がりました。もちろん他の勉強もしてますけど、効率が良くなった気がします」</p>
+            </div>
+
+            <div class="inline-feature">
+                <div class="inline-feature-label">RELATED</div>
+                <h3>RiseEdgeアカデミー「スリープ・ブースト・プログラム」</h3>
+                <p>今回取材したRiseEdgeアカデミーでは、睡眠学習メソッドを中心とした「スリープ・ブースト・プログラム」を提供中。脳波同調音声アプリと、オンラインコーチングを組み合わせた独自カリキュラムが特徴。現在、冬期講習の早期申込を受付中とのこと。</p>
+                <a href="#" class="feature-link" onclick="alert('RiseEdgeアカデミー 公式サイト\n\n【冬期特別キャンペーン】\nスリープ・ブースト・プログラム\n通常価格 298,000円 → 特別価格 198,000円\n\n※先着50名様限定\n※専用アプリ利用権付き'); return false;">
+                    詳細を見る →
+                </a>
+            </div>
+
         </div>
 
-    </div>
+        <div class="article-footer">
+            <div class="tag-list">
+                <a href="#" class="tag">睡眠学習</a>
+                <a href="#" class="tag">受験勉強</a>
+                <a href="#" class="tag">脳科学</a>
+                <a href="#" class="tag">高校生</a>
+                <a href="#" class="tag">学習法</a>
+            </div>
+            <div class="article-credit">
+                取材・文：山田 健太（編集部）<br>
+                記事に関するお問い合わせ：info@manabi-lab.example.com<br>
+                <span style="font-size: 11px; color: #bbb;">※本記事にはプロモーションが含まれます</span>
+            </div>
+        </div>
+    </article>
 
-    <div class="side-column">
-        <div class="side-widget">
-            <div class="widget-title">人気記事ランキング</div>
-            <ol style="padding-left: 20px; line-height: 1.6; font-size: 14px;">
-                <li style="margin-bottom:10px;"><a href="#" style="color:#333; text-decoration:none;">寝る前1分で変わる？記憶術の嘘と本当</a></li>
-                <li style="margin-bottom:10px;"><a href="#" style="color:#333; text-decoration:none;">AI時代の学習法：必要なのは暗記ではない</a></li>
-                <li style="margin-bottom:10px;"><a href="#" style="color:#333; text-decoration:none;">【PR】RiseEdgeの体験者が語る「奇跡の逆転」</a></li>
+    <aside>
+        <div class="widget">
+            <h3 class="widget-title">人気記事ランキング</h3>
+            <ol class="ranking-list">
+                <li>
+                    <span class="ranking-num">1</span>
+                    <a href="#">【2025年最新】現役東大生が実践する「朝5分」の習慣とは</a>
+                </li>
+                <li>
+                    <span class="ranking-num">2</span>
+                    <a href="#">共通テスト直前！ 残り1ヶ月でできる「追い込み勉強法」</a>
+                </li>
+                <li>
+                    <span class="ranking-num">3</span>
+                    <a href="#">「睡眠時間を削る」は逆効果？ 脳科学が証明する最適な睡眠</a>
+                </li>
+                <li>
+                    <span class="ranking-num">4</span>
+                    <a href="#">偏差値40から早慶合格！ 逆転合格者に聞いた3つの秘訣</a>
+                </li>
+                <li>
+                    <span class="ranking-num">5</span>
+                    <a href="#">集中力が続かない人必見。ポモドーロ・テクニックの正しい使い方</a>
+                </li>
             </ol>
         </div>
 
-        <div class="side-widget">
-            <div class="ad-banner" onclick="alert('広告ページへ遷移します')">
-                <div>
-                    <p style="font-size:14px; margin:0;">志望校、諦めていませんか？</p>
-                    <h3 style="margin:5px 0; color:#00a88f;">逆転合格専門塾<br>RiseEdge</h3>
-                    <button style="padding:5px 10px; font-size:12px;">詳細はこちら</button>
+        <div class="widget">
+            <h3 class="widget-title">関連記事</h3>
+            <div class="related-item">
+                <div class="related-thumb">📚</div>
+                <div class="related-info">
+                    <a href="#">記憶力を高める食事とは？ 受験生におすすめの栄養素</a>
+                    <div class="related-date">2025.11.20</div>
+                </div>
+            </div>
+            <div class="related-item">
+                <div class="related-thumb">🎧</div>
+                <div class="related-info">
+                    <a href="#">勉強中のBGMは効果ある？ 科学的に検証してみた</a>
+                    <div class="related-date">2025.11.15</div>
+                </div>
+            </div>
+            <div class="related-item">
+                <div class="related-thumb">💤</div>
+                <div class="related-info">
+                    <a href="#">【体験レポ】話題の睡眠学習塾に潜入取材</a>
+                    <div class="related-date">2025.11.08</div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<footer style="background:#333; color:white; padding:40px 0; text-align:center; font-size:12px;">
-    <div class="container" style="display:block; margin:0 auto;">
-        <p>EduFront News - 教育の最前線を届けるメディア</p>
-        <p>運営会社 | プライバシーポリシー | お問い合わせ</p>
-        <p style="color:#666; margin-top:20px;">Copyright © 2025 EduFront News All Rights Reserved.</p>
+        <div class="widget" style="background: linear-gradient(135deg, #1a237e 0%, #303f9f 100%); color: white;">
+            <div style="text-align: center; padding: 16px 0;">
+                <div style="font-size: 12px; opacity: 0.8; margin-bottom: 8px;">＼ 冬期講習 受付中 ／</div>
+                <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">RiseEdge<br>アカデミー</div>
+                <div style="font-size: 13px; opacity: 0.9; margin-bottom: 16px;">寝ている時間も、学びの時間に。</div>
+                <a href="#" onclick="alert('RiseEdge アカデミー\n\n無料体験授業 受付中\n\nお電話：03-XXXX-XXXX\n受付時間：10:00〜20:00'); return false;" style="display: inline-block; background: white; color: #1a237e; padding: 10px 24px; border-radius: 4px; text-decoration: none; font-size: 13px; font-weight: 700;">無料体験に申し込む</a>
+            </div>
+        </div>
+    </aside>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo">
+            <div class="logo-icon">学</div>
+            <span class="logo-text">学びの未来ラボ</span>
+        </div>
+        <div class="footer-links">
+            <a href="#">会社概要</a>
+            <a href="#">プライバシーポリシー</a>
+            <a href="#">広告掲載について</a>
+            <a href="#">お問い合わせ</a>
+            <a href="#">運営者情報</a>
+        </div>
+        <p class="copyright">© 2025 学びの未来ラボ / Manabi Future Lab. All rights reserved.<br>
+        <span style="font-size: 11px;">運営：株式会社エデュメディア</span></p>
     </div>
 </footer>
 
