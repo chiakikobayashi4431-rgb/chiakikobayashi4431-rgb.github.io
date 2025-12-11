@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情報的健康 実験サイト入口</title>
+    <style>
+        :root {
+            --bg: #050816;
+            --card-bg: rgba(9, 24, 45, 0.92);
+            --accent1: #ffb347;
+            --accent2: #6ae3ff;
+            --accent3: #ff5c7a;
+            --text-main: #f8fafc;
+            --text-sub: #9ca3af;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-main);
+            background:
+                radial-gradient(circle at 10% -10%, rgba(255, 188, 112, 0.25), transparent 60%),
+                radial-gradient(circle at 100% 0%, rgba(110, 230, 255, 0.25), transparent 55%),
+                radial-gradient(circle at 50% 120%, rgba(255, 92, 122, 0.28), transparent 55%),
+                linear-gradient(145deg, #020617, #020617 40%, #020617 60%, #020617);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* うっすらグリッド */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(148, 163, 184, 0.09) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.09) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mix-blend-mode: soft-light;
+            opacity: 0.45;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.25;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+            mix-blend-mode: soft-light;
+            z-index: -1;
+        }
+
+        .wrapper {
+            position: relative;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px 56px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            backdrop-filter: blur(14px);
+            width: fit-content;
+        }
+
+        .eyebrow-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 20%, var(--accent2), #0ea5e9);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+        }
+
+        .eyebrow-text {
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-sub);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(26px, 4vw, 34px);
+            letter-spacing: 0.04em;
+        }
+
+        h1 span.highlight {
+            background: linear-gradient(120deg, var(--accent1), var(--accent3));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .lead {
+            margin: 0;
+            max-width: 640px;
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .note {
+            margin: 0;
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            position: relative;
+            padding: 22px 20px 20px;
+            border-radius: 16px;
+            background: radial-gradient(circle at 0 0, rgba(148, 163, 184, 0.14), transparent 55%),
+                        radial-gradient(circle at 100% 0, rgba(96, 165, 250, 0.18), transparent 55%),
+                        var(--card-bg);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            box-shadow:
+                0 18px 45px rgba(15, 23, 42, 0.9),
+                0 0 0 1px rgba(15, 23, 42, 0.9) inset;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow: hidden;
+            transform-origin: center;
+            transition: transform 180ms ease-out, box-shadow 180ms ease-out, border-color 180ms ease-out, background 220ms ease-out;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 0 0, rgba(250, 250, 250, 0.16), transparent 70%),
+                radial-gradient(circle at 100% 0, rgba(56, 189, 248, 0.16), transparent 70%);
+            opacity: 0;
+            transition: opacity 220ms ease-out, transform 220ms ease-out;
+            pointer-events: none;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+            transform: translate3d(-4px, -4px, 0);
+        }
+
+        .card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow:
+                0 24px 60px rgba(15, 23, 42, 0.98),
+                0 0 0 1px rgba(148, 163, 184, 0.5) inset;
+            border-color: rgba(226, 232, 240, 0.9);
+        }
+
+        .card-label {
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #9ca3af;
+        }
+
+        .card-title {
+            font-size: 17px;
+            margin: 0;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            font-size: 11px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            color: #e5e7eb;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent1);
+            box-shadow: 0 0 6px rgba(248, 189, 109, 0.9);
+        }
+
+        .card-body {
+            font-size: 13px;
+            color: var(--text-sub);
+        }
+
+        .card-footer {
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        a.card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.8);
+            background: rgba(15, 23, 42, 0.9);
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: background 150ms ease-out, border-color 150ms ease-out, transform 150ms ease-out;
+        }
+
+        .card:hover a.card-link {
+            background: linear-gradient(120deg, var(--accent2), var(--accent1));
+            border-color: transparent;
+            transform: translateX(2px);
+            color: #020617;
+        }
+
+        .arrow {
+            font-size: 13px;
+        }
+
+        .meta {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        footer {
+            margin-top: 8px;
+            font-size: 11px;
+            color: #4b5563;
+        }
+
+        @media (max-width: 640px) {
+            .wrapper {
+                padding-top: 28px;
+            }
+            .card {
+                padding: 18px 16px 18px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <div class="wrapper">
+        <header>
+            <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                <span class="eyebrow-text">INFORMATIONAL HEALTH / PRACTICE</span>
+            </div>
+            <h1>
+                <span class="highlight">情報的健康</span> の授業用 実験サイト
+            </h1>
+            <p class="lead">
+                「それっぽく」見える情報デザインを観察しながら、
+                どのように人の判断や感情が誘導されているかを読み解くための実験ページです。
+                下から、今日扱うサイトを選んでください。
+            </p>
+            <p class="note">
+                ※ どちらのページもフィクションです。表示される商品・人物・効果は実在のものではありません。
+            </p>
+        </header>
+
+        <main>
+            <section class="card">
+                <div class="card-label">実験 01</div>
+                <h2 class="card-title">BLUE-MINDの脳科学実験室</h2>
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    誇張された個人ブログ型セールスページ
+                </div>
+                <p class="card-body">
+                    2010年代の「個人の体験談ブログ」風にデザインされたページです。
+                    色やレイアウト、言葉遣いがどのように「怪しさ」と「信じたくなる感じ」を同時に演出しているかに注目して読んでみてください。
+                </p>
+                <div class="card-footer">
+                    <a class="card-link" href="site1.html">
+                        サイト1をひらく
+                        <span class="arrow">↗</span>
+                    </a>
+                    <span class="meta">所要時間の目安：3〜5分で一読</span>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-label">実験 02</div>
+                <h2 class="card-title">EduFront News 特集記事</h2>
+                <div class="badge">
+                    <span class="badge-dot" style="background: var(--accent2); box-shadow: 0 0 6px rgba(56, 189, 248, 0.9);"></span>
+                    ニュースメディア風 PR コンテンツ
+                </div>
+                <p class="card-body">
+                    一見すると落ち着いたニュースサイトの体裁ですが、記事の途中から
+                    広告・PR へと自然に視線が誘導される構成になっています。
+                    どの部分で「記事」から「宣伝」へ雰囲気が変わるか、ぜひ探してみてください。
+                </p>
+                <div class="card-footer">
+                    <a class="card-link" href="site2.html">
+                        サイト2をひらく
+                        <span class="arrow">↗</span>
+                    </a>
+                    <span class="meta">所要時間の目安：3〜5分で一読</span>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            情報的健康（講義用） / このページから外部サイトへのリンクはありません。
+        </footer>
+    </div>
+</body>
+</html>
+
